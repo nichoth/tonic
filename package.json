@@ -1,5 +1,5 @@
 {
-  "name": "@socketsupply/tonic",
+  "name": "@nichoth/tonic",
   "version": "15.1.2",
   "description": "A component framework.",
   "scripts": {
@@ -10,6 +10,7 @@
     "build:base": "esbuild src/index.js --define:VERSION=\\\"$npm_package_version\\\" --outfile=index.js",
     "build:minify": "esbuild index.js --keep-names --minify --outfile=dist/tonic.min.js",
     "build": "npm run build:base && npm run build:minify",
+    "postversion": "git push && git push --tags && npm publish",
     "prepublishOnly": "npm run build",
     "pub": "npm run build && npm run test && npm publish --registry=https://registry.npmjs.org && npm publish --registry https://npm.pkg.github.com"
   },
