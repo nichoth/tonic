@@ -60,3 +60,4 @@ After adding your Javascript to your HTML, you can use your component anywhere.
 - [Troubleshooting](./HELP.md)
 
 MIT License
+ 
