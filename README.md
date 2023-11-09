@@ -14,7 +14,7 @@ A fork of [@socketsupply/tonic](https://github.com/socketsupply/tonic)
 
 ![tests](https://github.com/nichoth/tonic/actions/workflows/nodejs.yml/badge.svg)
 [![Socket Badge](https://socket.dev/api/badge/npm/package/@nichoth/tonic)](https://socket.dev/npm/package/@nichoth/tonic)
-[![module](https://img.shields.io/badge/module-ESM%2FCJS-blue)](README.md)
+[![module](https://img.shields.io/badge/module-ESM-blue)](README.md)
 ![license](https://img.shields.io/badge/license-MIT-brightgreen)
 
 
