@@ -2,6 +2,8 @@
   "name": "@nichoth/tonic",
   "version": "15.1.4",
   "description": "A component framework.",
+  "main": "index.js",
+  "type": "module",
   "scripts": {
     "lint": "standard .",
     "test": "npm run build && npm run lint && esbuild --bundle test/index.js | tape-run",
@@ -11,11 +13,8 @@
     "build:minify": "esbuild index.js --keep-names --minify --outfile=dist/tonic.min.js",
     "build": "npm run build:base && npm run build:minify",
     "prepublishOnly": "npm run build",
-    "postversion": "git push && git push --tags && npm publish",
-    "pub": "npm run build && npm run test && npm publish --registry=https://registry.npmjs.org && npm publish --registry https://npm.pkg.github.com"
+    "postversion": "git push && git push --tags && npm publish"
   },
-  "main": "index.js",
-  "type": "module",
   "license": "MIT",
   "devDependencies": {
     "@nichoth/tapzero": "0.8.4",
