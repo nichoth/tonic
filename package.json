@@ -15,7 +15,6 @@
     "prepublishOnly": "npm run build",
     "postversion": "git push && git push --tags && npm publish"
   },
-  "license": "MIT",
   "devDependencies": {
     "@nichoth/tapzero": "0.8.4",
     "benchmark": "^2.1.4",
@@ -24,6 +23,18 @@
     "tape-run": "^11.0.0",
     "uuid": "^9.0.0"
   },
+  "contributors": [
+    {
+      "name": "nichoth",
+      "email": "nichoth@nichoth.com",
+      "url": "https://nichoth.com/"
+    },
+    {
+      "name": "Raynos",
+      "email": "raynos2@gmail.com"
+    }
+  ],
+  "license": "MIT",
   "standard": {
     "ignore": [
       "test/fixtures/*"
@@ -34,10 +45,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/socketsupply/tonic.git"
+    "url": "git+https://github.com/nichoth/tonic.git"
   },
   "bugs": {
-    "url": "https://github.com/socketsupply/tonic/issues"
+    "url": "https://github.com/nichoth/tonic/issues"
   },
   "homepage": "https://tonicframework.dev"
 }
