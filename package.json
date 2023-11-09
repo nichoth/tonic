@@ -11,6 +11,7 @@
     "build:minify": "esbuild index.js --keep-names --minify --outfile=dist/tonic.min.js",
     "build": "npm run build:base && npm run build:minify",
     "prepublishOnly": "npm run build",
+    "postversion": "git push && git push --tags && npm publish",
     "pub": "npm run build && npm run test && npm publish --registry=https://registry.npmjs.org && npm publish --registry https://npm.pkg.github.com"
   },
   "main": "index.js",
