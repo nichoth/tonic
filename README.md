@@ -15,7 +15,7 @@ A fork of [@socketsupply/tonic](https://github.com/socketsupply/tonic)
 ![tests](https://github.com/nichoth/tonic/actions/workflows/nodejs.yml/badge.svg)
 [![Socket Badge](https://socket.dev/api/badge/npm/package/@nichoth/tonic)](https://socket.dev/npm/package/@nichoth/tonic)
 [![module](https://img.shields.io/badge/module-ESM-blue)](README.md)
-![license](https://img.shields.io/badge/license-MIT-brightgreen)
+[![license](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE.txt)
 
 
 Tonic is a low profile component framework for the web. It's one file, less than 3kb gzipped and has no dependencies. It's designed to be used with modern Javascript and is compatible with all modern browsers and built on top of the Web Components.
