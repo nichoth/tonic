@@ -12,8 +12,10 @@
     "build:base": "esbuild src/index.js --define:VERSION=\\\"$npm_package_version\\\" --outfile=index.js",
     "build:minify": "esbuild index.js --keep-names --minify --outfile=dist/tonic.min.js",
     "build": "npm run build:base && npm run build:minify",
+    "changelog": "auto-changelog --template keepachangelog --breaking-pattern 'BREAKING CHANGE' && git add CHANGELOG.md && git commit -m 'changelog'",
+    "preversion": "npm run lint",
     "prepublishOnly": "npm run build",
-    "postversion": "git push && git push --tags && npm publish"
+    "postversion": "npm run changelog && git push --follow-tags && npm publish"
   },
   "devDependencies": {
     "@nichoth/tapzero": "0.8.4",
