@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@nichoth/tapzero": "0.8.4",
+    "auto-changelog": "2.4.0",
     "benchmark": "^2.1.4",
     "esbuild": "^0.19.10",
     "standard": "^17.0.0",
