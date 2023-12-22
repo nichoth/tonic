@@ -1,6 +1,6 @@
 {
   "name": "@nichoth/tonic",
-  "version": "15.1.7",
+  "version": "15.1.8",
   "description": "A component framework.",
   "main": "index.js",
   "type": "module",
