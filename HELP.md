@@ -1,6 +1,6 @@
 # TROUBLE SHOOTING
 
-### Class Name Mangling
+## Class Name Mangling
 
 To avoid class name mangling issues, we recommend using the second parameter in `Tonic.add` method:
 

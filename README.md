@@ -20,13 +20,13 @@ A fork of [@socketsupply/tonic](https://github.com/socketsupply/tonic)
 
 Tonic is a low profile component framework for the web. It's one file, less than 3kb gzipped and has no dependencies. It's designed to be used with modern Javascript and is compatible with all modern browsers and built on top of Web Components.
 
-## Installation
+## Install
 
 ```sh
 npm install @nichoth/tonic
 ```
 
-## Usage
+## Use
 
 ```js
 import Tonic from '@nichoth/tonic'
@@ -53,7 +53,7 @@ After adding your Javascript to your HTML, you can use your component anywhere.
 </html>
 ```
 
-# Useful links
+## Useful links
 - [Tonic components](https://github.com/socketsupply/components)
 - [Migration from the early versions of Tonic](./MIGRATION.md)
 - [API](./API.md)
