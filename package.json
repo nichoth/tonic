@@ -14,7 +14,7 @@
     "build": "npm run build:base && npm run build:minify",
     "changelog": "auto-changelog --template keepachangelog auto-changelog --breaking-pattern 'BREAKING CHANGE'",
     "preversion": "npm run lint",
-    "version": "npm run changelog && git add CHANGELOG.md && git commit -m 'changelog'",
+    "version": "npm run changelog && git add CHANGELOG.md",
     "postversion": "git push --follow-tags && npm publish",
     "prepublishOnly": "npm run build"
   },
