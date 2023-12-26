@@ -12,7 +12,7 @@
     "build:base": "esbuild src/index.js --define:VERSION=\\\"$npm_package_version\\\" --outfile=index.js",
     "build:minify": "esbuild index.js --keep-names --minify --outfile=dist/tonic.min.js",
     "build": "npm run build:base && npm run build:minify",
-    "changelog": "auto-changelog --template keepachangelog --breaking-pattern 'BREAKING CHANGE'",
+    "changelog": "auto-changelog --template keepachangelog auto-changelog --breaking-pattern 'BREAKING CHANGE'",
     "preversion": "npm run lint",
     "version": "npm run changelog && git add CHANGELOG.md && git commit -m 'changelog'",
     "postversion": "git push --follow-tags && npm publish",
@@ -26,6 +26,10 @@
     "standard": "^17.0.0",
     "tape-run": "^11.0.0",
     "uuid": "^9.0.0"
+  },
+  "exports": {
+    ".": "./index.js",
+    "./*.min.js": "./dist/*.min.js"
   },
   "contributors": [
     {
