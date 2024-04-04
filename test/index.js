@@ -1,4 +1,4 @@
-import { test } from '@nichoth/tapzero'
+import { test } from '@bicycle-codes/tapzero'
 import { v4 as uuid } from 'uuid'
 import Tonic from '../index.js'
 
