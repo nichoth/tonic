@@ -13,8 +13,9 @@
 A fork of [@socketsupply/tonic](https://github.com/socketsupply/tonic)
 
 ![tests](https://github.com/bicycle-codes/tonic/actions/workflows/nodejs.yml/badge.svg)
-[![Socket Badge](https://socket.dev/api/badge/npm/package/@bicycle-codes/tonic)](https://socket.dev/npm/package/@bicycle-codes/tonic)
 [![module](https://img.shields.io/badge/module-ESM-blue)](README.md)
+[![semantic versioning](https://img.shields.io/badge/semver-2.0.0-blue?logo=semver&style=flat-square)](https://semver.org/)
+[![dependencies](https://img.shields.io/badge/dependencies-zero-brightgreen.svg?style=flat-square)](package.json)
 [![license](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE.txt)
 
 Tonic is a low profile component framework for the web. It's one file, less than 3kb gzipped and has no dependencies. It's designed to be used with modern Javascript and is compatible with all modern browsers and built on top of Web Components.
