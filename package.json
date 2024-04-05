@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "lint": "eslint \"./src/index.js\"",
+    "lint": "eslint ./src/index.js ./test/index.js",
     "test": "npm run build && npm run lint && esbuild --bundle test/index.js | tape-run",
     "ci:test:tape-run": "esbuild --bundle test/index.js | tape-run",
     "test:open": "npm run build && esbuild --bundle test/index.js | tape-run --browser chrome --keep-open",
@@ -29,8 +29,8 @@
     "uuid": "^9.0.0"
   },
   "exports": {
-    ".": "./index.js",
-    "./*.min.js": "./dist/*.min.js"
+    ".": "./dist/index.js",
+    "./min": "./dist/*.min.js"
   },
   "contributors": [
     {
