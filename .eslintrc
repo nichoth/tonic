@@ -1,0 +1,24 @@
+{
+  "extends": [
+    "standard"
+  ],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "off",
+    "operator-linebreak": ["off"],
+    "multiline-ternary": "off",
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxEOF": 1
+      }
+    ],
+    "no-undef": "off",
+    "indent": ["error", 4, {
+      "SwitchCase": 1,
+      "ignoredNodes": ["TemplateLiteral *"]
+    }],
+    "comma-dangle": "off",
+    "no-multi-spaces": ["error", { "ignoreEOLComments": true }]
+  }
+}

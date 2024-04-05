@@ -3,6 +3,5 @@
 .github/
 test/
 src/
-!index.js
 !dist/*
 *.md
