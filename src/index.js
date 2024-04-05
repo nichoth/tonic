@@ -1,4 +1,3 @@
-// @ts-check
 class TonicTemplate {
     constructor (rawText, templateStrings, unsafe) {
         this.isTonicTemplate = true
@@ -11,6 +10,14 @@ class TonicTemplate {
     toString () { return this.rawText }
 }
 
+/**
+ * An instance of a Tonic element
+ * @typedef {InstanceType<typeof Tonic>} TonicComponent
+ */
+
+/**
+ * Class Tonic
+ */
 export class Tonic extends window.HTMLElement {
     static _tags = ''
     static _refIds = []
@@ -20,13 +27,30 @@ export class Tonic extends window.HTMLElement {
     static _reg = {}
     static _stylesheetRegistry = []
     static _index = 0
-    // eslint-disable-next-line no-undef
+    // @ts-ignore
     static get version () { return VERSION ?? null }
     static get SPREAD () { return /\.\.\.\s?(__\w+__\w+__)/g }
     static get ESC () { return /["&'<>`/]/g }
     static get AsyncFunctionGenerator () { return async function * () {}.constructor }
     static get AsyncFunction () { return async function () {}.constructor }
     static get MAP () { return { '"': '&quot;', '&': '&amp;', '\'': '&#x27;', '<': '&lt;', '>': '&gt;', '`': '&#x60;', '/': '&#x2F;' } }
+
+    static ssr
+    static nonce
+
+    /**
+     * @type {Element[] & { __children__? }}
+     * @private
+     */
+    elements
+
+    /**
+     * @type {ChildNode[] & { __children__? }}
+     * @private
+     */
+    nodes
+
+    _props = Tonic.getPropertyNames(this) /** @private */
 
     constructor () {
         super()
@@ -40,6 +64,20 @@ export class Tonic extends window.HTMLElement {
         this.nodes = [...this.childNodes]
         this.nodes.__children__ = true
         this._events()
+    }
+
+    /**
+     * Should be implemented in children
+     */
+    // render () {}
+
+    /**
+     * Check whether the dairy product is solid at room temperature.
+     * @abstract
+     * @return {TonicTemplate|Promise<TonicTemplate>}
+     */
+    render () {
+        throw new Error('Must be implemented by an instance')
     }
 
     get isTonicComponent () {
@@ -264,14 +302,22 @@ export class Tonic extends window.HTMLElement {
         })
     }
 
+    /**
+     * _set
+     * @param {Element|InstanceType<typeof Tonic>|ShadowRoot} target
+     * @param {()=>any} render
+     * @param {string} content
+     * @returns {Promise<void>}
+     * @private
+     */
     _set (target, render, content = '') {
         this.willRender && this.willRender()
         for (const node of target.querySelectorAll(Tonic._tags)) {
-            if (!node.isTonicComponent) continue
+            if (!(/** @type {TonicComponent} */(node)).isTonicComponent) continue
 
             const id = node.getAttribute('id')
             if (!id || !Tonic._refIds.includes(id)) continue
-            Tonic._states[id] = node.state
+            Tonic._states[id] = (/** @type {TonicComponent} */(node)).state
         }
 
         if (render instanceof Tonic.AsyncFunction) {
@@ -356,7 +402,7 @@ export class Tonic extends window.HTMLElement {
                 const { 1: root } = p.split('__')
                 this.props[name] = Tonic._data[root][p]
             } else if (/\d+__float/.test(p)) {
-                this.props[name] = parseFloat(p, 10)
+                this.props[name] = parseFloat(p)
             } else if (p === 'null__null') {
                 this.props[name] = null
             } else if (/\w+__boolean/.test(p)) {

@@ -22,8 +22,8 @@ test('pass an async function as an event handler', t => {
 
         render () {
             return this.html`<div>
-        <fn-example onbtnclick=${this.clicker.bind(this)}></fn-example>
-      </div>`
+                <fn-example onbtnclick=${this.clicker.bind(this)}></fn-example>
+            </div>`
         }
     }
 
@@ -35,15 +35,15 @@ test('pass an async function as an event handler', t => {
 
         render () {
             return this.html`<div id="fn-test">
-        example
-        <button id="btn">clicker</button>
-      </div>`
+                example
+                <button id="btn">clicker</button>
+            </div>`
         }
     }
 
     document.body.innerHTML = `
-    <the-app></the-app>
-  `
+        <the-app></the-app>
+    `
 
     Tonic.add(FnExample)
     Tonic.add(TheApp)
@@ -315,8 +315,8 @@ test('pass props', async t => {
 
 test('get element by id and set properties via the api', async t => {
     document.body.innerHTML = `
-    <component-c number=1></component-c>
-  `
+        <component-c number=1></component-c>
+    `
 
     class ComponentC extends Tonic {
         willConnect () {
@@ -329,6 +329,8 @@ test('get element by id and set properties via the api', async t => {
     }
 
     Tonic.add(ComponentC)
+
+    await sleep(1)
 
     {
         const div = document.getElementById('test')
@@ -442,8 +444,8 @@ test('construct from api', async t => {
 
 test('stylesheets and inline styles', async t => {
     document.body.innerHTML = `
-    <component-f number=1></component-f>
-  `
+        <component-f number=1></component-f>
+    `
 
     class ComponentF extends Tonic {
         stylesheet () {
@@ -916,8 +918,8 @@ test('async render', async t => {
         async render () {
             const value = await this.getSomeData()
             return this.html`
-        <p>${value}</p>
-      `
+                <p>${value}</p>
+            `
         }
     }
 

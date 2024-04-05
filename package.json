@@ -9,9 +9,10 @@
     "test": "npm run build && npm run lint && esbuild --bundle test/index.js | tape-run",
     "ci:test:tape-run": "esbuild --bundle test/index.js | tape-run",
     "test:open": "npm run build && esbuild --bundle test/index.js | tape-run --browser chrome --keep-open",
-    "build:base": "esbuild src/index.js --define:VERSION=\\\"$npm_package_version\\\" --outfile=dist/index.js",
+    "build:main": "esbuild src/index.js --define:VERSION=\\\"$npm_package_version\\\" --outfile=dist/index.js",
     "build:minify": "esbuild src/index.js --keep-names --minify --outfile=dist/tonic.min.js",
-    "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build:base && npm run build:minify",
+    "build:types": "npx tsc -p ./jsconfig.build.json",
+    "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build:main && npm run build:minify && npm run build:types",
     "preversion": "npm run lint",
     "version": "auto-changelog -p --template keepachangelog auto-changelog --breaking-pattern 'BREAKING CHANGE:' && git add CHANGELOG.md",
     "postversion": "git push --follow-tags && npm publish",
@@ -26,6 +27,7 @@
     "eslint-config-standard": "^17.1.0",
     "tap-arc": "1.2.2",
     "tape-run": "^11.0.0",
+    "typescript": "5.4.4",
     "uuid": "^9.0.0"
   },
   "exports": {
