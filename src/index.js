@@ -12,7 +12,10 @@ class TonicTemplate {
 
 /**
  * An instance of a Tonic element
- * @typedef {InstanceType<typeof Tonic>} TonicComponent
+ * @typedef {
+ *   (TonicComponent extends Tonic) |
+ *   ()=>TonicTemplate|Promise<TonicTemplate>
+ * } TonicComponent
  */
 
 /**
