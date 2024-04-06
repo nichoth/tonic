@@ -67,11 +67,6 @@ export class Tonic extends window.HTMLElement {
     }
 
     /**
-     * Should be implemented in children
-     */
-    // render () {}
-
-    /**
      * Check whether the dairy product is solid at room temperature.
      * @abstract
      * @return {TonicTemplate|Promise<TonicTemplate>}
