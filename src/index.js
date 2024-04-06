@@ -147,6 +147,12 @@ export class Tonic extends window.HTMLElement {
         return props
     }
 
+    /**
+     * Add a component
+     * @param {TonicComponent} c
+     * @param {string} [htmlName] Name of the element, default to the class name
+     * @returns {void}
+     */
     static add (c, htmlName) {
         const hasValidName = htmlName || (c.name && c.name.length > 1)
         if (!hasValidName) {
