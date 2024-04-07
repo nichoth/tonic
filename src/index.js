@@ -20,6 +20,7 @@ class TonicTemplate {
 
 /**
  * Class Tonic
+ * @template {T = {}} T Type for the props
  */
 export class Tonic extends window.HTMLElement {
     static _tags = ''
@@ -61,7 +62,7 @@ export class Tonic extends window.HTMLElement {
         delete Tonic._states[super.id]
         this._state = state || {}
         this.preventRenderOnReconnect = false
-        this.props = {}
+        this.props = {}  /** @type {T} */
         this.elements = [...this.children]
         this.elements.__children__ = true
         this.nodes = [...this.childNodes]
