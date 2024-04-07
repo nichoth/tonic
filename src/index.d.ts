@@ -46,11 +46,11 @@ export class Tonic<T = {}> extends HTMLElement {
    static getPropertyNames(proto: any): string[];
    /**
     * Add a component
-    * @param {TonicComponent} c
+    * @param {typeof TonicComponent} c
     * @param {string} [htmlName] Name of the element, default to the class name
     * @returns {void}
     */
-   static add(c: TonicComponent, htmlName?: string): void;
+   static add(c: typeof TonicComponent, htmlName?: string): void;
    static registerStyles(stylesheetFn: any): void;
    static escape(s: any): any;
    static unsafeRawString(s: any, templateStrings: any): TonicTemplate;
