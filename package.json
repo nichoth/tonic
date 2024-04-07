@@ -29,8 +29,8 @@
     "uuid": "^9.0.0"
   },
   "exports": {
-    ".": "./dist/index.js",
-    "./min": "./dist/*.min.js"
+    ".": "./dist/tonic.js",
+    "./min": "./dist/tonic.min.js"
   },
   "contributors": [
     {
