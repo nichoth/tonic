@@ -1,7 +1,0 @@
-{
-    "extends": "./jsconfig.json",
-    "exclude": [
-        "dist",
-        "test"
-    ]
-}
