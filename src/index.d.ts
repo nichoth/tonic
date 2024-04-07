@@ -67,7 +67,7 @@ export class Tonic<T = {}> extends HTMLElement {
    _props: any; /** @private */
    _state: any;
    preventRenderOnReconnect: boolean;
-   props:T;
+   props:T & Partial<{ class; id; }>;
    /**
     * Render the component.
     * @abstract
