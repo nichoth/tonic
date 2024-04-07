@@ -6,10 +6,9 @@
 * } TonicComponent
 */
 
-interface ITonicComponent extends Tonic {
-}
+interface ITonicComponent extends Tonic {}
 
-type TonicComponent<T = {}> = ITonicComponent | ((T)=>TonicTemplate|Element)
+type TonicComponent = (()=>TonicTemplate|HTMLElement)|typeof Tonic<T>
 
 /**
 * Class Tonic
@@ -50,7 +49,7 @@ export class Tonic<T = {}> extends HTMLElement {
     * @param {string} [htmlName] Name of the element, default to the class name
     * @returns {void}
     */
-   static add(c: typeof TonicComponent, htmlName?: string): void;
+   static add(c: TonicComponent, htmlName?: string): void;
    static registerStyles(stylesheetFn: any): void;
    static escape(s: any): any;
    static unsafeRawString(s: any, templateStrings: any): TonicTemplate;
