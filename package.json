@@ -1,6 +1,6 @@
 {
   "name": "@bicycle-codes/tonic",
-  "version": "15.4.5",
+  "version": "15.4.6",
   "description": "A component framework.",
   "main": "index.js",
   "type": "module",
