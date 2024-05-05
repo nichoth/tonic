@@ -1,3 +1,9 @@
+![tests](https://github.com/bicycle-codes/tonic/actions/workflows/nodejs.yml/badge.svg)
+[![module](https://img.shields.io/badge/module-ESM-blue?style=flat-square)](README.md)
+[![semantic versioning](https://img.shields.io/badge/semver-2.0.0-blue?logo=semver&style=flat-square)](https://semver.org/)
+[![dependencies](https://img.shields.io/badge/dependencies-zero-brightgreen.svg?style=flat-square)](package.json)
+[![license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/bicycle-codes/tonic/fork/readme-tonic-dark.png">
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/bicycle-codes/tonic/fork/readme-tonic.png">
@@ -7,16 +13,9 @@
 <p align="center">
   https://tonicframework.dev
 </p>
+
 <br/>
 <br/>
-
-A fork of [@socketsupply/tonic](https://github.com/socketsupply/tonic)
-
-![tests](https://github.com/bicycle-codes/tonic/actions/workflows/nodejs.yml/badge.svg)
-[![module](https://img.shields.io/badge/module-ESM-blue?style=flat-square)](README.md)
-[![semantic versioning](https://img.shields.io/badge/semver-2.0.0-blue?logo=semver&style=flat-square)](https://semver.org/)
-[![dependencies](https://img.shields.io/badge/dependencies-zero-brightgreen.svg?style=flat-square)](package.json)
-[![license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
 Tonic is a low profile component framework for the web. It's one file, less than 3kb gzipped and has no dependencies. It's designed to be used with modern Javascript and is compatible with all modern browsers and built on top of Web Components.
 
@@ -25,6 +24,9 @@ Tonic is a low profile component framework for the web. It's one file, less than
 ```sh
 npm install @bicycle-codes/tonic
 ```
+
+## fork
+This is a fork of [@socketsupply/tonic](https://github.com/socketsupply/tonic)
 
 ## Use
 
