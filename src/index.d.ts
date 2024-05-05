@@ -40,9 +40,10 @@ export class Tonic<T = {}> extends HTMLElement {
    static nonce: any;
    static _createId(): string;
    static _normalizeAttrs(o: any, x?: {}): {};
-   static match(el: any, s: any): any;
-   static getTagName(camelName: any): any;
-   static getPropertyNames(proto: any): string[];
+   static match(el:any, s:any):any;
+   static getTagName(camelName:string):string;
+   static get tag():string;
+   static getPropertyNames(proto:any):string[];
    /**
     * Add a component
     * @param {typeof TonicComponent} c
