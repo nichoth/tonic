@@ -28,6 +28,24 @@ npm install @bicycle-codes/tonic
 ## fork
 This is a fork of [@socketsupply/tonic](https://github.com/socketsupply/tonic)
 
+### additions
+Things added to the forked version
+
+#### `static get tag():string;`
+
+Get the HTML tag name given a Tonic class.
+
+```js
+class ExampleTwo extends Tonic {
+    render () {
+        return this.html`<div>example two</div>`
+    }
+}
+
+ExampleTwo.tag
+// => 'example-two'
+```
+
 ## Use
 
 ```js

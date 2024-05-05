@@ -65,6 +65,17 @@ test('get kebab case from camel case', t => {
         'example using a tonic component')
 })
 
+test('tagName instance method', t => {
+    class ExampleTwo extends Tonic {
+        render () {
+            return this.html`<div>example two</div>`
+        }
+    }
+
+    t.equal(ExampleTwo.tag, 'example-two',
+        'should return the correct tag name')
+})
+
 test('attach to dom', async t => {
     class ComponentA extends Tonic {
         render () {
@@ -979,9 +990,9 @@ test('pass in references to children', async t => {
 
         render () {
             return this.html`
-        ${this.left}<br/>
-        ${this.right}
-      `
+                ${this.left}<br/>
+                ${this.right}
+            `
         }
     }
     Tonic.add(DividerComponent, cName)

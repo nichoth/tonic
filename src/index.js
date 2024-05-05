@@ -83,6 +83,10 @@ export class Tonic extends window.HTMLElement {
         return true
     }
 
+    static get tag () {
+        return Tonic.getTagName(this.name)
+    }
+
     static _createId () {
         return `tonic${Tonic._index++}`
     }
