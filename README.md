@@ -19,6 +19,8 @@
 
 Tonic is a low profile component framework for the web. It's one file, less than 3kb gzipped and has no dependencies. It's designed to be used with modern Javascript and is compatible with all modern browsers and built on top of Web Components.
 
+[See the API docs](https://bicycle-codes.github.io/tonic/index.html)
+
 ## Install
 
 ```sh
