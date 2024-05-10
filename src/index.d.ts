@@ -8,7 +8,7 @@
 
 interface ITonicComponent extends Tonic {}
 
-type TonicComponent = (()=>TonicTemplate|HTMLElement)|typeof Tonic<T>
+type TonicComponent = (()=>TonicTemplate|HTMLElement)|typeof Tonic
 
 /**
 * Class Tonic

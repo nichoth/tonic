@@ -3,6 +3,7 @@
   "version": "15.4.14",
   "description": "A component framework.",
   "main": "dist/tonic.js",
+  "files": ["dist/*"],
   "type": "module",
   "scripts": {
     "lint": "eslint ./src/index.js ./test/index.js",
@@ -11,6 +12,7 @@
     "test:open": "npm run build && esbuild --bundle test/index.js | tape-run --browser chrome --keep-open",
     "build:main": "esbuild src/index.js --define:VERSION=\\\"$npm_package_version\\\" --outfile=dist/tonic.js",
     "build:minify": "esbuild src/index.js --keep-names --minify --outfile=dist/tonic.min.js",
+    "build-docs": "typedoc ./src/index.d.ts",
     "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build:main && npm run build:minify && cp ./src/index.d.ts ./dist/tonic.d.ts",
     "preversion": "npm run lint",
     "version": "auto-changelog -p --template keepachangelog auto-changelog --breaking-pattern 'BREAKING CHANGE:' && git add CHANGELOG.md",
@@ -27,6 +29,7 @@
     "tap-arc": "1.2.2",
     "tap-spec": "5.0.0",
     "tape-run": "^11.0.0",
+    "typedoc": "0.25.13",
     "uuid": "^9.0.0"
   },
   "exports": {
