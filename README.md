@@ -63,9 +63,6 @@ Things added to the forked version
 #### `tag`
 Get the HTML tag name given a Tonic class.
 
-#### types
-See [./src/index.d.ts](./src/index.d.ts)
-
 ```ts
 static get tag():string;
 ```
@@ -80,6 +77,9 @@ class ExampleTwo extends Tonic {
 ExampleTwo.tag
 // => 'example-two'
 ```
+
+#### types
+See [./src/index.d.ts](./src/index.d.ts)
 
 ## Useful links
 - [Tonic components](https://github.com/socketsupply/components)
