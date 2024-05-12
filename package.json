@@ -1,9 +1,11 @@
 {
   "name": "@bicycle-codes/tonic",
-  "version": "15.4.14",
+  "version": "15.4.15",
   "description": "A component framework.",
   "main": "dist/tonic.js",
-  "files": ["dist/*"],
+  "files": [
+    "dist/*"
+  ],
   "type": "module",
   "scripts": {
     "lint": "eslint ./src/index.js ./test/index.js",
