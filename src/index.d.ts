@@ -42,7 +42,7 @@ export class Tonic<T = {}> extends HTMLElement {
    static _normalizeAttrs(o: any, x?: {}): {};
    static match(el:any, s:any):any;
    static getTagName(camelName:string):string;
-   static get tag():string;
+   static get tag():`${string}-${string}`;
    static getPropertyNames(proto:any):string[];
    /**
     * Add a component
