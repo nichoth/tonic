@@ -58,7 +58,10 @@ After adding your Javascript to your HTML, you can use your component anywhere.
 This is a fork of [@socketsupply/tonic](https://github.com/socketsupply/tonic)
 
 ### additions
-Things added to the forked version
+Things added to the forked version:
+
+#### types
+See [src/index.d.ts](./src/index.d.ts).
 
 #### `tag`
 Get the HTML tag name given a Tonic class.
