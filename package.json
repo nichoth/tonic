@@ -28,11 +28,10 @@
     "esbuild": "^0.21.4",
     "eslint": "^8.57.0",
     "eslint-config-standard": "^17.1.0",
-    "tap-arc": "1.2.2",
     "tap-spec": "5.0.0",
     "tape-run": "^11.0.0",
     "typedoc": "0.25.13",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.1"
   },
   "exports": {
     ".": "./dist/tonic.js",
