@@ -49,20 +49,15 @@
     }
   ],
   "license": "MIT",
-  "standard": {
-    "ignore": [
-      "test/fixtures/*"
-    ]
-  },
   "directories": {
     "test": "test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nichoth/tonic.git"
+    "url": "git+https://github.com/bicycle-codes/tonic.git"
   },
   "bugs": {
-    "url": "https://github.com/nichoth/tonic/issues"
+    "url": "https://github.com/bicycle-codes/tonic/issues"
   },
   "homepage": "https://tonicframework.dev"
 }
