@@ -81,9 +81,6 @@ ExampleTwo.tag
 // => 'example-two'
 ```
 
-#### types
-See [./src/index.d.ts](./src/index.d.ts)
-
 ## Useful links
 - [Tonic components](https://github.com/socketsupply/components)
 - [Migration from the early versions of Tonic](./MIGRATION.md)
