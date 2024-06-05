@@ -74,6 +74,8 @@ After adding your Javascript to your HTML, you can use your component anywhere.
 ## fork
 This is a fork of [@socketsupply/tonic](https://github.com/socketsupply/tonic)
 
+See [API docs](https://bicycle-codes.github.io/tonic/)
+
 ### additions
 Things added to the forked version:
 
