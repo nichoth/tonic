@@ -31,6 +31,7 @@ npm install @bicycle-codes/tonic
 
 ```js
 import Tonic from '@bicycle-codes/tonic'
+```
 
 You can use functions as components. They can be async or even an async generator function.
 
