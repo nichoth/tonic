@@ -102,14 +102,14 @@ ExampleTwo.tag
 ```
 
 #### `emit`
-Emit events namespaced events following a convention.
+Emit namespaced events, following a naming convention.
 
 ```js
 class EventsExample extends Tonic {
   // ...
 }
 
-document.body.addEventListener('events-example:testing', ev => {
+document.body.addEventListener(EventsExample.event('testing'), ev => {
   // events bubble by default
   console.log(ev.type)  // => 'events-example:testing'
   console.log(ev.detail)  // => 'some data'
