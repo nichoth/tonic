@@ -101,6 +101,30 @@ ExampleTwo.tag
 // => 'example-two'
 ```
 
+#### `emit`
+Emit events namespaced events following a convention.
+
+```js
+class EventsExample extends Tonic {
+  // ...
+}
+
+document.body.addEventListener('events-example:testing', ev => {
+  // events bubble by default
+  console.log(ev.type)  // => 'events-example:testing'
+  console.log(ev.detail)  // => 'some data'
+})
+
+const el = document.querySelector('events-example')
+el.emit('testing', 'some data')
+
+// override default values
+el.emit('more testing', 'some data', {
+  bubbles: false
+  cancelable: false
+})
+```
+
 ## Useful links
 - [Tonic components](https://github.com/socketsupply/components)
 - [Migration from the early versions of Tonic](./MIGRATION.md)

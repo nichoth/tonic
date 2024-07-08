@@ -76,6 +76,53 @@ test('tagName instance method', t => {
         'should return the correct tag name')
 })
 
+test('event names', t => {
+    class EvExample extends Tonic {
+        render () {
+            return this.html`<div></div>`
+        }
+    }
+
+    t.equal(EvExample.event('testing'), 'ev-example:testing',
+        'should return the right namespaced event name')
+})
+
+test('emit a namespaced event', t => {
+    t.plan(4)
+    class EventsExample extends Tonic {
+        render () {
+            return this.html`<div>event name example</div>`
+        }
+    }
+
+    Tonic.add(EventsExample)
+
+    document.body.innerHTML += '<events-example></events-example>'
+
+    const body = document.body
+    body.addEventListener('events-example:testing', ev => {
+        t.ok(ev, 'event should bubble by default')
+        t.equal(ev.type, 'events-example:testing',
+            'should follow naming convention when using `emit`')
+    })
+
+    const el = document.querySelector('events-example')
+    el.emit('testing')
+
+    el.addEventListener(EventsExample.event('abc'), ev => {
+        t.equal(ev.detail, 'hello', 'should emit the `detail` property')
+    })
+
+    el.emit('abc', 'hello')
+
+    el.addEventListener(EventsExample.event('testing2'), ev => {
+        t.equal(ev.type, 'events-example:testing2',
+            '`component.event(name)` should return the right event name')
+    })
+
+    el.emit('testing2', null, { bubbles: false })
+})
+
 test('attach to dom', async t => {
     class ComponentA extends Tonic {
         render () {
@@ -325,6 +372,8 @@ test('pass props', async t => {
 })
 
 test('get element by id and set properties via the api', async t => {
+    t.plan(4)
+
     document.body.innerHTML = `
         <component-c number=1></component-c>
     `
@@ -1313,8 +1362,4 @@ test('alternating component', async t => {
 
     t.equal(cElem.children[0], child1Ref)
     t.equal(cElem.children[1], child2Ref)
-})
-
-test('cleanup, ensure exist', async t => {
-    document.body.classList.add('finished')
 })

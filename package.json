@@ -9,7 +9,7 @@
   "type": "module",
   "scripts": {
     "lint": "eslint ./src/index.js ./test/index.js",
-    "test": "npm run build && npm run lint && esbuild --bundle test/index.js | tape-run",
+    "test": "npm run build && npm run lint && esbuild --bundle test/index.js | tape-run | tap-spec",
     "ci:test:tape-run": "esbuild --bundle test/index.js | tape-run",
     "test:open": "npm run build && esbuild --bundle test/index.js | tape-run --browser chrome --keep-open",
     "build:main": "esbuild src/index.js --define:VERSION=\\\"$npm_package_version\\\" --outfile=dist/tonic.js",

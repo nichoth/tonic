@@ -83,6 +83,10 @@ export class Tonic extends window.HTMLElement {
         return true
     }
 
+    static event (type) {
+        return `${this.tag}:${type}`
+    }
+
     static get tag () {
         return Tonic.getTagName(this.name)
     }
@@ -212,6 +216,29 @@ export class Tonic extends window.HTMLElement {
     dispatch (eventName, detail = null) {
         const opts = { bubbles: true, detail }
         this.dispatchEvent(new window.CustomEvent(eventName, opts))
+    }
+
+    /**
+     * Emit an event, using a convention for event names.
+     *
+     * @example
+     * myComponent.emit('test')  // = `my-compnent:test`
+     *
+     * @param {string} type The event type, comes after `:` in event name.
+     * @param {stting|object|any[]} detail detail for Event constructor
+     * @param {{ bubbles?:boolean, cancelable?:boolean }} opts `Cancelable` and
+     * `bubbles`
+     * @returns {boolean}
+     */
+    emit (type, detail = {}, opts = {}) {
+        const namespace = Tonic.getTagName(this.constructor.name)
+        const event = new CustomEvent(`${namespace}:${type}`, {
+            bubbles: (opts.bubbles === undefined) ? true : opts.bubbles,
+            cancelable: (opts.cancelable === undefined) ? true : opts.cancelable,
+            detail
+        })
+
+        return this.dispatchEvent(event)
     }
 
     html (strings, ...values) {
