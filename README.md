@@ -24,7 +24,7 @@ Tonic is a low profile component framework for the web. It's one file, less than
 ## Install
 
 ```sh
-npm install -S @bicycle-codes/tonic
+npm i -S @bicycle-codes/tonic
 ```
 
 ## Use
