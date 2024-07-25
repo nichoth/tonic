@@ -104,6 +104,7 @@ export class Tonic<T = {}> extends HTMLElement {
    _source: string;
    isInDocument(target: any): boolean;
    disconnectedCallback(): void;
+   click(ev:MouseEvent): any;
 }
 export default Tonic;
 
