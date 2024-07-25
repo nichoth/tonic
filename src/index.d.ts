@@ -106,7 +106,8 @@ export class Tonic<T = {}> extends HTMLElement {
    disconnectedCallback(): void;
 }
 export default Tonic;
-declare class TonicTemplate {
+
+export class TonicTemplate {
    constructor(rawText: any, templateStrings: any, unsafe: any);
    isTonicTemplate: boolean;
    unsafe: any;

@@ -1,4 +1,4 @@
-class TonicTemplate {
+export class TonicTemplate {
     constructor (rawText, templateStrings, unsafe) {
         this.isTonicTemplate = true
         this.unsafe = unsafe
