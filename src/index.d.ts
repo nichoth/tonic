@@ -81,7 +81,8 @@ export class Tonic<T = {}> extends HTMLElement {
    _events(): void;
    _prop(o: any): string;
    _placehold(r: any): string;
-   dispatch(eventName: any, detail?: any): void;
+   dispatch(eventName:string, detail?:any):void;
+   emit(eventName:string, detail?:any):void;
    html(strings: any, ...values: any[]): TonicTemplate;
    scheduleReRender(oldProps: any): any;
    pendingReRender: any;

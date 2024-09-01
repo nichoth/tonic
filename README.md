@@ -21,6 +21,8 @@ Tonic is a low profile component framework for the web. It's one file, less than
 
 [See the API docs](https://bicycle-codes.github.io/tonic/index.html)
 
+The tl;dr is that this allows you to pass full JS objects between components, not just strings as in HTML.
+
 ## Install
 
 ```sh
@@ -80,10 +82,14 @@ See [API docs](https://bicycle-codes.github.io/tonic/)
 ### additions
 Things added to the forked version:
 
+------------------------------------------------------
 #### types
+------------------------------------------------------
 See [src/index.d.ts](./src/index.d.ts).
 
+------------------------------------------------------
 #### `tag`
+------------------------------------------------------
 Get the HTML tag name given a Tonic class.
 
 ```ts
@@ -101,13 +107,19 @@ ExampleTwo.tag
 // => 'example-two'
 ```
 
+------------------------------------------------------
 #### `emit`
+------------------------------------------------------
 Emit namespaced events, following a naming convention.
+
+##### example
 
 ```js
 class EventsExample extends Tonic {
   // ...
 }
+
+// EventsExample.event('name') will return the namespace event name
 
 document.body.addEventListener(EventsExample.event('testing'), ev => {
   // events bubble by default
@@ -120,6 +132,63 @@ el.emit('testing', 'some data')
 
 // override default values
 el.emit('more testing', 'some data', {
+  bubbles: false
+  cancelable: false
+})
+```
+
+------------------------------------------------------
+#### `static event`
+------------------------------------------------------
+Return the namespaced event name given a string.
+
+```ts
+class {
+  static event (type:string):string {
+      return `${this.tag}:${type}`
+  }
+}
+```
+
+##### example
+```js
+class EventsExample extends Tonic {
+  // ...
+}
+
+EventsExample.event('testing')
+//  => 'events-example:testing'
+```
+
+------------------------------------------------------
+#### `dispatch`
+------------------------------------------------------
+Emit a regular, non-namespaced event.
+
+```ts
+{
+  dispatch (eventName:string, detail = null)
+}
+```
+
+##### example
+
+```js
+class EventsExample extends Tonic {
+  // ...
+}
+
+document.body.addEventListener('testing', ev => {
+  // events bubble by default
+  console.log(ev.type)  // => 'testing'
+  console.log(ev.detail)  // => 'some data'
+})
+
+const el = document.querySelector('events-example')
+el.dispatch('testing', 'some data')
+
+// override default values
+el.dispatch('more testing', 'some data', {
   bubbles: false
   cancelable: false
 })

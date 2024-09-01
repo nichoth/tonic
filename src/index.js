@@ -213,16 +213,22 @@ export class Tonic extends window.HTMLElement {
         return new TonicTemplate(s, templateStrings, true)
     }
 
+    /**
+     * Emit a regular, non-namespaced event.
+     *
+     * @param {string} eventName Event name as a string.
+     * @param {any} detail Any data to go with the event.
+     */
     dispatch (eventName, detail = null) {
         const opts = { bubbles: true, detail }
         this.dispatchEvent(new window.CustomEvent(eventName, opts))
     }
 
     /**
-     * Emit an event, using a convention for event names.
+     * Emit a namespaced event, using a convention for event names.
      *
      * @example
-     * myComponent.emit('test')  // = `my-compnent:test`
+     * myComponent.emit('test')  // => `my-compnent:test`
      *
      * @param {string} type The event type, comes after `:` in event name.
      * @param {stting|object|any[]} detail detail for Event constructor
@@ -273,7 +279,7 @@ export class Tonic extends window.HTMLElement {
             }
             if (
                 typeof o === 'object' && o && o.nodeType === 1 &&
-        typeof o.cloneNode === 'function'
+                typeof o.cloneNode === 'function'
             ) {
                 return this._placehold([o])
             }
