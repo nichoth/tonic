@@ -1,5 +1,10 @@
 export class TonicTemplate {
-    constructor (rawText, templateStrings, unsafe) {
+    rawText:string
+    unsafe:boolean
+    templateStrings?:string[]
+    isTonicTemplate:true
+
+    constructor (rawText, templateStrings?:string[], unsafe?:boolean) {
         this.isTonicTemplate = true
         this.unsafe = unsafe
         this.rawText = rawText
@@ -31,16 +36,42 @@ export class Tonic extends window.HTMLElement {
     static _reg = {}
     static _stylesheetRegistry = []
     static _index = 0
-    // @ts-ignore
+    // @ts-expect-error VERSION is injected during build
     static get version () { return VERSION ?? null }
     static get SPREAD () { return /\.\.\.\s?(__\w+__\w+__)/g }
     static get ESC () { return /["&'<>`/]/g }
-    static get AsyncFunctionGenerator () { return async function * () {}.constructor }
-    static get AsyncFunction () { return async function () {}.constructor }
-    static get MAP () { return { '"': '&quot;', '&': '&amp;', '\'': '&#x27;', '<': '&lt;', '>': '&gt;', '`': '&#x60;', '/': '&#x2F;' } }
+    static get AsyncFunctionGenerator ():AsyncGeneratorFunctionConstructor {
+        return (async function * () {}.constructor) as AsyncGeneratorFunctionConstructor
+    }
+    // eslint-disable-next-line
+    static get AsyncFunction ():Function {
+        return (async function () {}.constructor)
+    }
+
+    static get MAP () {
+        /* eslint-disable object-property-newline, object-property-newline, object-curly-newline */
+        return { '"': '&quot;', '&': '&amp;', '\'': '&#x27;', '<': '&lt;',
+            '>': '&gt;', '`': '&#x60;', '/': '&#x2F;' }
+    }
 
     static ssr
     static nonce
+
+    _state:any
+    stylesheet?:()=>string
+    styles:()=>string
+    props:Record<any, any>
+    preventRenderOnReconnect:boolean
+    _id:string
+    pendingReRender?:Promise<this>
+    updated?:((props:Record<string, any>)=>any)
+    willRender?:(()=>any)
+    root?:ShadowRoot|this
+    defaults?:()=>Record<string, any>
+    willConnect?:()=>any
+    _source?:string
+    connected?:()=>void
+    disconnected?:()=>void
 
     /**
      * @type {Element[] & { __children__? }}
@@ -231,12 +262,15 @@ export class Tonic extends window.HTMLElement {
      * myComponent.emit('test')  // => `my-compnent:test`
      *
      * @param {string} type The event type, comes after `:` in event name.
-     * @param {stting|object|any[]} detail detail for Event constructor
+     * @param {string|object|any[]} detail detail for Event constructor
      * @param {{ bubbles?:boolean, cancelable?:boolean }} opts `Cancelable` and
      * `bubbles`
      * @returns {boolean}
      */
-    emit (type, detail = {}, opts = {}) {
+    emit (type:string, detail:string|object|any[] = {}, opts:Partial<{
+        bubbles:boolean;
+        cancelable:boolean
+    }> = {}) {
         const namespace = Tonic.getTagName(this.constructor.name)
         const event = new CustomEvent(`${namespace}:${type}`, {
             bubbles: (opts.bubbles === undefined) ? true : opts.bubbles,
@@ -355,20 +389,20 @@ export class Tonic extends window.HTMLElement {
     _set (target, render, content = '') {
         this.willRender && this.willRender()
         for (const node of target.querySelectorAll(Tonic._tags)) {
-            if (!(/** @type {TonicComponent} */(node)).isTonicComponent) continue
+            if (!node.isTonicComponent) continue
 
             const id = node.getAttribute('id')
             if (!id || !Tonic._refIds.includes(id)) continue
-            Tonic._states[id] = (/** @type {TonicComponent} */(node)).state
+            Tonic._states[id] = node.state
         }
 
         if (render instanceof Tonic.AsyncFunction) {
-            return (render
+            return ((render as ()=>any)
                 .call(this, this.html, this.props)
                 .then(content => this._apply(target, content))
             )
         } else if (render instanceof Tonic.AsyncFunctionGenerator) {
-            return this._drainIterator(target, render.call(this))
+            return this._drainIterator(target, (render as AsyncGeneratorFunction).call(this))
         } else if (render === null) {
             this._apply(target, content)
         } else if (render instanceof Function) {
