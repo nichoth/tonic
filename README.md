@@ -112,8 +112,6 @@ ExampleTwo.tag
 ------------------------------------------------------
 Emit namespaced events, following a naming convention.
 
-##### example
-
 ```js
 class EventsExample extends Tonic {
   // ...
