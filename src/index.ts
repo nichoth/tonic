@@ -1,12 +1,12 @@
 export class TonicTemplate {
     rawText:string
     unsafe:boolean
-    templateStrings?:string[]
+    templateStrings?:string[]|null
     isTonicTemplate:true
 
-    constructor (rawText, templateStrings?:string[], unsafe?:boolean) {
+    constructor (rawText, templateStrings?:string[]|null, unsafe?:boolean) {
         this.isTonicTemplate = true
-        this.unsafe = unsafe
+        this.unsafe = !!unsafe
         this.rawText = rawText
         this.templateStrings = templateStrings
     }
@@ -29,12 +29,12 @@ export class TonicTemplate {
  */
 export abstract class Tonic extends window.HTMLElement {
     private static _tags = ''
-    private static _refIds = []
+    private static _refIds:string[] = []
     private static _data = {}
     private static _states = {}
     private static _children = {}
     private static _reg = {}
-    private static _stylesheetRegistry = []
+    private static _stylesheetRegistry:(()=>string)[] = []
     private static _index = 0
     // @ts-expect-error VERSION is injected during build
     static get version () { return VERSION ?? null }
@@ -64,7 +64,7 @@ export abstract class Tonic extends window.HTMLElement {
     props:Record<any, any>
     preventRenderOnReconnect:boolean
     private _id:string
-    pendingReRender?:Promise<this>
+    pendingReRender?:Promise<this>|null
     updated?:((props:Record<string, any>)=>any)
     willRender?:(()=>any)
     root?:ShadowRoot|this
@@ -157,16 +157,16 @@ export abstract class Tonic extends window.HTMLElement {
     }
 
     static match (el:HTMLElement, s:string) {
-        if (!el.matches) el = el.parentElement
+        if (!el.matches) el = el.parentElement!
         return el.matches(s) ? el : el.closest(s)
     }
 
     static getTagName (camelName:string) {
-        return camelName.match(/[A-Z][a-z0-9]*/g).join('-').toLowerCase()
+        return camelName.match(/[A-Z][a-z0-9]*/g)!.join('-').toLowerCase()
     }
 
     static getPropertyNames (proto) {
-        const props = []
+        const props:string[] = []
         while (proto && proto !== Tonic.prototype) {
             props.push(...Object.getOwnPropertyNames(proto))
             proto = Object.getPrototypeOf(proto)
@@ -371,10 +371,10 @@ export abstract class Tonic extends window.HTMLElement {
      * @param {Element|InstanceType<typeof Tonic>|ShadowRoot} target
      * @param {()=>any} render
      * @param {string} content
-     * @returns {Promise<void>}
+     * @returns {Promise<void>|void}
      * @private
      */
-    private _set (target, render, content = ''):Promise<void> {
+    private _set (target, render, content = ''):Promise<void>|void {
         this.willRender && this.willRender()
         for (const node of target.querySelectorAll(Tonic._tags)) {
             if (!node.isTonicComponent) continue

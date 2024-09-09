@@ -85,7 +85,7 @@ Things added to the forked version:
 ------------------------------------------------------
 #### types
 ------------------------------------------------------
-See [src/index.d.ts](./src/index.d.ts).
+See [src/index.d.ts](./src/index.ts).
 
 ------------------------------------------------------
 #### `tag`
@@ -110,7 +110,18 @@ ExampleTwo.tag
 ------------------------------------------------------
 #### `emit`
 ------------------------------------------------------
-Emit namespaced events, following a naming convention.
+Emit namespaced events, following a naming convention. The return value is the call to [element.dispatchEvent()](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent)
+
+Given an event name, the dispatched event will be prefixed with the element name, for example, `my-element:event-name`.
+
+```ts
+emit (type:string, detail:string|object|any[] = {}, opts:Partial<{
+    bubbles:boolean;
+    cancelable:boolean
+}> = {}):boolean
+```
+
+##### example
 
 ```js
 class EventsExample extends Tonic {
@@ -118,8 +129,9 @@ class EventsExample extends Tonic {
 }
 
 // EventsExample.event('name') will return the namespace event name
+const evName = EventsExample.event('testing')
 
-document.body.addEventListener(EventsExample.event('testing'), ev => {
+document.body.addEventListener(evName, ev => {
   // events bubble by default
   console.log(ev.type)  // => 'events-example:testing'
   console.log(ev.detail)  // => 'some data'
@@ -165,7 +177,7 @@ Emit a regular, non-namespaced event.
 
 ```ts
 {
-  dispatch (eventName:string, detail = null)
+  dispatch (eventName:string, detail = null):void
 }
 ```
 
@@ -197,6 +209,7 @@ el.dispatch('more testing', 'some data', {
 - [Migration from the early versions of Tonic](./MIGRATION.md)
 - [API](./API.md)
 - [Troubleshooting](./HELP.md)
+- [API docs generated from typescript](https://bicycle-codes.github.io/tonic/index.html)
 
 MIT License
  
