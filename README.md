@@ -209,6 +209,8 @@ el.dispatch('more testing', 'some data', {
 - [Migration from the early versions of Tonic](./MIGRATION.md)
 - [API](./API.md)
 - [Troubleshooting](./HELP.md)
+- [Web Component lifecycle methods](https://gomakethings.com/the-web-component-lifecycle-methods/)
+- [How to detect when attributes change on a Web Component](https://gomakethings.com/how-to-detect-when-attributes-change-on-a-web-component/)
 - [API docs generated from typescript](https://bicycle-codes.github.io/tonic/classes/Tonic.html)
 
 MIT License

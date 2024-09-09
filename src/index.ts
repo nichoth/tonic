@@ -16,18 +16,13 @@ export class TonicTemplate {
 }
 
 /**
- * An instance of a Tonic element
- * @typedef {
- *   (TonicComponent extends Tonic) |
- *   ()=>TonicTemplate|Promise<TonicTemplate>
- * } TonicComponent
- */
-
-/**
  * Class Tonic
- * @template {T = {}} T Type for the props
+ *
+ * @template {T extends object = Record<string, any>} T Type of the props
  */
-export abstract class Tonic extends window.HTMLElement {
+export abstract class Tonic<
+    T extends object=Record<string, any>
+> extends window.HTMLElement {
     private static _tags = ''
     private static _refIds:string[] = []
     private static _data = {}
@@ -61,7 +56,7 @@ export abstract class Tonic extends window.HTMLElement {
     private _state:any
     stylesheet?:()=>string
     styles:()=>string
-    props:Record<any, any>
+    props:T
     preventRenderOnReconnect:boolean
     private _id:string
     pendingReRender?:Promise<this>|null
@@ -84,7 +79,7 @@ export abstract class Tonic extends window.HTMLElement {
         delete Tonic._states[super.id]
         this._state = state || {}
         this.preventRenderOnReconnect = false
-        this.props = {}  /** @type {T} */
+        this.props = {} as T
         this.elements = [...this.children]
         this.elements.__children__ = true
         this.nodes = [...this.childNodes]
@@ -98,10 +93,22 @@ export abstract class Tonic extends window.HTMLElement {
         return true
     }
 
-    static event (type:string) {
+    /**
+     * Get a namespaced event name, given a non-namespaced string.
+     *
+     * @example
+     * MyElement.event('example')  // => my-element:example
+     *
+     * @param {string} type The name of the event
+     * @returns {string} The namespaced event name
+     */
+    static event (type:string):string {
         return `${this.tag}:${type}`
     }
 
+    /**
+     * Get the tag name of this component.
+     */
     static get tag ():string {
         return Tonic.getTagName(this.name)
     }
@@ -124,6 +131,9 @@ export abstract class Tonic extends window.HTMLElement {
         return _id
     }
 
+    /**
+     * Get the component state property.
+     */
     get state () {
         return (this._checkId(), this._state)
     }
@@ -175,7 +185,9 @@ export abstract class Tonic extends window.HTMLElement {
     }
 
     /**
-     * Add a component
+     * Add a component. Calls `window.customElements.define` with the
+     * component's name.
+     *
      * @param {TonicComponent} c
      * @param {string} [htmlName] Name of the element, default to the class name
      * @returns {void}
@@ -348,7 +360,10 @@ export abstract class Tonic extends window.HTMLElement {
         return this.pendingReRender
     }
 
-    reRender (o = this.props):Promise<this> {
+    /**
+     * Update the view
+     */
+    reRender (o:T|((props:T)=>T) = this.props):Promise<this> {
         const oldProps = { ...this.props }
         this.props = typeof o === 'function' ? o(oldProps) : o
         return this.scheduleReRender(oldProps)
@@ -357,6 +372,7 @@ export abstract class Tonic extends window.HTMLElement {
     /**
      * If there is a method with the same name as the event type,
      * then call the method.
+     * @SEE {@link https://gomakethings.com/the-handleevent-method-is-the-absolute-best-way-to-handle-events-in-web-components/#what-is-the-handleevent-method What is the handleEvent() method?}
      */
     handleEvent (ev:Event):void {
         this[ev.type] && this[ev.type](ev)
