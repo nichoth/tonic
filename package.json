@@ -1,6 +1,6 @@
 {
   "name": "@bicycle-codes/tonic",
-  "version": "16.0.0",
+  "version": "16.0.1",
   "description": "A component framework.",
   "main": "dist/tonic.js",
   "files": [
