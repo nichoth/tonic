@@ -27,7 +27,7 @@ export class TonicTemplate {
  * Class Tonic
  * @template {T = {}} T Type for the props
  */
-export class Tonic extends window.HTMLElement {
+export abstract class Tonic extends window.HTMLElement {
     static _tags = ''
     static _refIds = []
     static _data = {}
@@ -57,33 +57,24 @@ export class Tonic extends window.HTMLElement {
     static ssr
     static nonce
 
-    _state:any
+    private _state:any
     stylesheet?:()=>string
     styles:()=>string
     props:Record<any, any>
     preventRenderOnReconnect:boolean
-    _id:string
+    private _id:string
     pendingReRender?:Promise<this>
     updated?:((props:Record<string, any>)=>any)
     willRender?:(()=>any)
     root?:ShadowRoot|this
     defaults?:()=>Record<string, any>
     willConnect?:()=>any
-    _source?:string
+    private _source?:string
     connected?:()=>void
     disconnected?:()=>void
 
-    /**
-     * @type {Element[] & { __children__? }}
-     * @private
-     */
-    elements
-
-    /**
-     * @type {ChildNode[] & { __children__? }}
-     * @private
-     */
-    nodes
+    private elements:Element[] & { __children__? }
+    private nodes:ChildNode[] & { __children__? }
 
     _props = Tonic.getPropertyNames(this) /** @private */
 
@@ -101,37 +92,30 @@ export class Tonic extends window.HTMLElement {
         this._events()
     }
 
-    /**
-     * Render the component.
-     * @abstract
-     * @return {TonicTemplate|Promise<TonicTemplate>}
-     */
-    render () {
-        throw new Error('Must be implemented by an instance')
-    }
+    abstract render ():TonicTemplate|Promise<TonicTemplate>
 
-    get isTonicComponent () {
+    get isTonicComponent ():true {
         return true
     }
 
-    static event (type) {
+    static event (type:string) {
         return `${this.tag}:${type}`
     }
 
-    static get tag () {
+    static get tag ():string {
         return Tonic.getTagName(this.name)
     }
 
-    static _createId () {
+    private static _createId () {
         return `tonic${Tonic._index++}`
     }
 
-    static _normalizeAttrs (o, x = {}) {
+    private static _normalizeAttrs (o, x = {}) {
         [...o].forEach(o => (x[o.name] = o.value))
         return x
     }
 
-    _checkId () {
+    private _checkId () {
         const _id = super.id
         if (!_id) {
             const html = this.outerHTML.replace(this.innerHTML, '...')
@@ -148,7 +132,7 @@ export class Tonic extends window.HTMLElement {
         this._state = (this._checkId(), newState)
     }
 
-    _events () {
+    private _events () {
         const hp = Object.getOwnPropertyNames(window.HTMLElement.prototype)
         for (const p of this._props) {
             if (hp.indexOf('on' + p) === -1) continue
@@ -156,7 +140,7 @@ export class Tonic extends window.HTMLElement {
         }
     }
 
-    _prop (o) {
+    private _prop (o) {
         const id = this._id
         const p = `__${id}__${Tonic._createId()}__`
         Tonic._data[id] = Tonic._data[id] || {}
@@ -164,7 +148,7 @@ export class Tonic extends window.HTMLElement {
         return p
     }
 
-    _placehold (r) {
+    private _placehold (r) {
         const id = this._id
         const ref = `placehold:${id}:${Tonic._createId()}__`
         Tonic._children[id] = Tonic._children[id] || {}
@@ -172,12 +156,12 @@ export class Tonic extends window.HTMLElement {
         return ref
     }
 
-    static match (el, s) {
+    static match (el:HTMLElement, s:string) {
         if (!el.matches) el = el.parentElement
         return el.matches(s) ? el : el.closest(s)
     }
 
-    static getTagName (camelName) {
+    static getTagName (camelName:string) {
         return camelName.match(/[A-Z][a-z0-9]*/g).join('-').toLowerCase()
     }
 
@@ -196,7 +180,7 @@ export class Tonic extends window.HTMLElement {
      * @param {string} [htmlName] Name of the element, default to the class name
      * @returns {void}
      */
-    static add (c, htmlName) {
+    static add (c, htmlName?:string) {
         const hasValidName = htmlName || (c.name && c.name.length > 1)
         if (!hasValidName) {
             throw Error('Mangling. https://bit.ly/2TkJ6zP')
@@ -208,7 +192,7 @@ export class Tonic extends window.HTMLElement {
         }
 
         if (!c.prototype || !c.prototype.isTonicComponent) {
-            const tmp = { [c.name]: class extends Tonic {} }[c.name]
+            const tmp = { [c.name]: class extends Tonic { render } }[c.name]
             tmp.prototype.render = c
             c = tmp
         }
@@ -226,7 +210,7 @@ export class Tonic extends window.HTMLElement {
         return c
     }
 
-    static registerStyles (stylesheetFn) {
+    static registerStyles (stylesheetFn:()=>string) {
         if (Tonic._stylesheetRegistry.includes(stylesheetFn)) return
         Tonic._stylesheetRegistry.push(stylesheetFn)
 
@@ -236,11 +220,11 @@ export class Tonic extends window.HTMLElement {
         if (document.head) document.head.appendChild(styleNode)
     }
 
-    static escape (s) {
+    static escape (s:string) {
         return s.replace(Tonic.ESC, c => Tonic.MAP[c])
     }
 
-    static unsafeRawString (s, templateStrings) {
+    static unsafeRawString (s:string, templateStrings:string[]) {
         return new TonicTemplate(s, templateStrings, true)
     }
 
@@ -250,7 +234,7 @@ export class Tonic extends window.HTMLElement {
      * @param {string} eventName Event name as a string.
      * @param {any} detail Any data to go with the event.
      */
-    dispatch (eventName, detail = null) {
+    dispatch (eventName:string, detail:any = null) {
         const opts = { bubbles: true, detail }
         this.dispatchEvent(new window.CustomEvent(eventName, opts))
     }
@@ -281,7 +265,7 @@ export class Tonic extends window.HTMLElement {
         return this.dispatchEvent(event)
     }
 
-    html (strings, ...values) {
+    html (strings:string[], ...values) {
         const refs = o => {
             if (o && o.__children__) return this._placehold(o)
             if (o && o.isTonicTemplate) return o.rawText
@@ -320,7 +304,7 @@ export class Tonic extends window.HTMLElement {
             return o
         }
 
-        const out = []
+        const out:string[] = []
         for (let i = 0; i < strings.length - 1; i++) {
             out.push(strings[i], refs(values[i]))
         }
@@ -338,7 +322,7 @@ export class Tonic extends window.HTMLElement {
         return new TonicTemplate(htmlStr, strings, false)
     }
 
-    scheduleReRender (oldProps) {
+    scheduleReRender (oldProps:any):Promise<this> {
         if (this.pendingReRender) return this.pendingReRender
 
         this.pendingReRender = new Promise(resolve => setTimeout(() => {
@@ -360,17 +344,17 @@ export class Tonic extends window.HTMLElement {
         return this.pendingReRender
     }
 
-    reRender (o = this.props) {
+    reRender (o = this.props):Promise<this> {
         const oldProps = { ...this.props }
         this.props = typeof o === 'function' ? o(oldProps) : o
         return this.scheduleReRender(oldProps)
     }
 
-    handleEvent (e) {
+    handleEvent (e:Event) {
         this[e.type](e)
     }
 
-    _drainIterator (target, iterator) {
+    private _drainIterator (target, iterator) {
         return iterator.next().then((result) => {
             this._set(target, null, result.value)
             if (result.done) return
@@ -386,7 +370,7 @@ export class Tonic extends window.HTMLElement {
      * @returns {Promise<void>}
      * @private
      */
-    _set (target, render, content = '') {
+    private _set (target, render, content = '') {
         this.willRender && this.willRender()
         for (const node of target.querySelectorAll(Tonic._tags)) {
             if (!node.isTonicComponent) continue
@@ -410,7 +394,7 @@ export class Tonic extends window.HTMLElement {
         }
     }
 
-    _apply (target, content) {
+    private _apply (target, content) {
         if (content && content.isTonicTemplate) {
             content = content.rawText
         } else if (typeof content === 'string') {
@@ -462,7 +446,7 @@ export class Tonic extends window.HTMLElement {
         }
     }
 
-    connectedCallback () {
+    connectedCallback ():void {
         this.root = this.shadowRoot || this // here for back compat
 
         if (super.id && !Tonic._refIds.includes(super.id)) {
@@ -512,12 +496,12 @@ export class Tonic extends window.HTMLElement {
         this.connected && this.connected()
     }
 
-    isInDocument (target) {
+    isInDocument (target:HTMLElement|ShadowRoot):boolean {
         const root = target.getRootNode()
         return root === document || root.toString() === '[object ShadowRoot]'
     }
 
-    disconnectedCallback () {
+    disconnectedCallback ():void {
         this.disconnected && this.disconnected()
         delete Tonic._data[this._id]
         delete Tonic._children[this._id]
