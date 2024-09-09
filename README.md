@@ -209,7 +209,7 @@ el.dispatch('more testing', 'some data', {
 - [Migration from the early versions of Tonic](./MIGRATION.md)
 - [API](./API.md)
 - [Troubleshooting](./HELP.md)
-- [API docs generated from typescript](https://bicycle-codes.github.io/tonic/index.html)
+- [API docs generated from typescript](https://bicycle-codes.github.io/tonic/classes/Tonic.html)
 
 MIT License
  
