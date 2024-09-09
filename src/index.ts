@@ -354,8 +354,12 @@ export abstract class Tonic extends window.HTMLElement {
         return this.scheduleReRender(oldProps)
     }
 
+    /**
+     * If there is a method with the same name as the event type,
+     * then call the method.
+     */
     handleEvent (ev:Event):void {
-        this[ev.type](ev)
+        this[ev.type] && this[ev.type](ev)
     }
 
     private _drainIterator (target, iterator) {
