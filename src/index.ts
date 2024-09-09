@@ -372,7 +372,7 @@ export abstract class Tonic<
     /**
      * If there is a method with the same name as the event type,
      * then call the method.
-     * @SEE {@link https://gomakethings.com/the-handleevent-method-is-the-absolute-best-way-to-handle-events-in-web-components/#what-is-the-handleevent-method What is the handleEvent() method?}
+     * @see {@link https://gomakethings.com/the-handleevent-method-is-the-absolute-best-way-to-handle-events-in-web-components/#what-is-the-handleevent-method What is the handleEvent() method?}
      */
     handleEvent (ev:Event):void {
         this[ev.type] && this[ev.type](ev)
