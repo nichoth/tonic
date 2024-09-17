@@ -23,6 +23,18 @@ Tonic is a low profile component framework for the web. It's one file, less than
 
 The tl;dr is that this allows you to pass full JS objects between components, not just strings as in HTML.
 
+## Contents
+
+<!-- toc -->
+
+- [Install](#install)
+- [Use](#use)
+- [fork](#fork)
+  * [additions](#additions)
+- [Useful links](#useful-links)
+
+<!-- tocstop -->
+
 ## Install
 
 ```sh
@@ -82,14 +94,10 @@ See [API docs](https://bicycle-codes.github.io/tonic/)
 ### additions
 Things added to the forked version:
 
-------------------------------------------------------
 #### types
-------------------------------------------------------
-See [src/index.d.ts](./src/index.ts).
+See [src/index.ts](./src/index.ts).
 
-------------------------------------------------------
 #### `tag`
-------------------------------------------------------
 Get the HTML tag name given a Tonic class.
 
 ```ts
@@ -107,10 +115,8 @@ ExampleTwo.tag
 // => 'example-two'
 ```
 
-------------------------------------------------------
 #### `emit`
-------------------------------------------------------
-Emit namespaced events, following a naming convention. The return value is the call to [element.dispatchEvent()](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent)
+Emit namespaced events, following a naming convention. The return value is the call to [element.dispatchEvent()](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent).
 
 Given an event name, the dispatched event will be prefixed with the element name, for example, `my-element:event-name`.
 
@@ -121,7 +127,7 @@ emit (type:string, detail:string|object|any[] = {}, opts:Partial<{
 }> = {}):boolean
 ```
 
-##### example
+##### emit example
 
 ```js
 class EventsExample extends Tonic {
@@ -147,9 +153,7 @@ el.emit('more testing', 'some data', {
 })
 ```
 
-------------------------------------------------------
 #### `static event`
-------------------------------------------------------
 Return the namespaced event name given a string.
 
 ```ts
@@ -170,9 +174,7 @@ EventsExample.event('testing')
 //  => 'events-example:testing'
 ```
 
-------------------------------------------------------
 #### `dispatch`
-------------------------------------------------------
 Emit a regular, non-namespaced event.
 
 ```ts
@@ -181,7 +183,7 @@ Emit a regular, non-namespaced event.
 }
 ```
 
-##### example
+##### `dispatch` example
 
 ```js
 class EventsExample extends Tonic {
@@ -212,6 +214,3 @@ el.dispatch('more testing', 'some data', {
 - [Web Component lifecycle methods](https://gomakethings.com/the-web-component-lifecycle-methods/)
 - [How to detect when attributes change on a Web Component](https://gomakethings.com/how-to-detect-when-attributes-change-on-a-web-component/)
 - [API docs generated from typescript](https://bicycle-codes.github.io/tonic/classes/Tonic.html)
-
-MIT License
- 
