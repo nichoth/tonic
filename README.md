@@ -144,9 +144,10 @@ document.body.addEventListener(evName, ev => {
 })
 
 const el = document.querySelector('events-example')
+// use default values for `bubbles = true` and `cancelable = true`
 el.emit('testing', 'some data')
 
-// override default values
+// override default values, `bubbles` and `cancelable`
 el.emit('more testing', 'some data', {
   bubbles: false
   cancelable: false
