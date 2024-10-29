@@ -91,13 +91,10 @@ This is a fork of [@socketsupply/tonic](https://github.com/socketsupply/tonic).
 
 See [API docs](https://substrate-system.github.io/tonic/).
 
-### additions
-Things added to the forked version:
-
-#### types
+### types
 See [src/index.ts](./src/index.ts).
 
-#### `tag`
+### `tag`
 Get the HTML tag name given a Tonic class.
 
 ```ts
@@ -115,7 +112,7 @@ ExampleTwo.tag
 // => 'example-two'
 ```
 
-#### `emit`
+### `emit`
 Emit namespaced events, following a naming convention. The return value is the call to [element.dispatchEvent()](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent).
 
 Given an event name, the dispatched event will be prefixed with the element name, for example, `my-element:event-name`.
@@ -127,7 +124,7 @@ emit (type:string, detail:string|object|any[] = {}, opts:Partial<{
 }> = {}):boolean
 ```
 
-##### emit example
+#### emit example
 
 ```js
 class EventsExample extends Tonic {
@@ -154,7 +151,7 @@ el.emit('more testing', 'some data', {
 })
 ```
 
-#### `static event`
+### `static event`
 Return the namespaced event name given a string.
 
 ```ts
@@ -165,7 +162,7 @@ class {
 }
 ```
 
-##### example
+#### example
 ```js
 class EventsExample extends Tonic {
   // ...
@@ -175,7 +172,7 @@ EventsExample.event('testing')
 //  => 'events-example:testing'
 ```
 
-#### `dispatch`
+### `dispatch`
 Emit a regular, non-namespaced event.
 
 ```ts
@@ -184,7 +181,7 @@ Emit a regular, non-namespaced event.
 }
 ```
 
-##### `dispatch` example
+#### `dispatch` example
 
 ```js
 class EventsExample extends Tonic {
