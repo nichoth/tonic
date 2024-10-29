@@ -1,13 +1,13 @@
-![tests](https://github.com/bicycle-codes/tonic/actions/workflows/nodejs.yml/badge.svg)
+![tests](https://github.com/substrate-system/tonic/actions/workflows/nodejs.yml/badge.svg)
 [![module](https://img.shields.io/badge/module-ESM-blue?style=flat-square)](README.md)
 [![semantic versioning](https://img.shields.io/badge/semver-2.0.0-blue?logo=semver&style=flat-square)](https://semver.org/)
 [![dependencies](https://img.shields.io/badge/dependencies-zero-brightgreen.svg?style=flat-square)](package.json)
 [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/bicycle-codes/tonic/fork/readme-tonic-dark.png">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/bicycle-codes/tonic/fork/readme-tonic.png">
-  <img alt="tonic" src="https://raw.githubusercontent.com/bicycle-codes/tonic/fork/readme-tonic.png">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/substrate-system/tonic/fork/readme-tonic-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/substrate-system/tonic/fork/readme-tonic.png">
+  <img alt="tonic" src="https://raw.githubusercontent.com/substrate-system/tonic/fork/readme-tonic.png">
 </picture>
 
 <p align="center">
@@ -19,7 +19,7 @@
 
 Tonic is a low profile component framework for the web. It's one file, less than 3kb gzipped and has no dependencies. It's designed to be used with modern Javascript and is compatible with all modern browsers and built on top of Web Components.
 
-[See the API docs](https://bicycle-codes.github.io/tonic/index.html)
+[See the API docs](https://substrate-system.github.io/tonic/index.html)
 
 The tl;dr is that this allows you to pass full JS objects between components, not just strings as in HTML.
 
@@ -38,13 +38,13 @@ The tl;dr is that this allows you to pass full JS objects between components, no
 ## Install
 
 ```sh
-npm i -S @bicycle-codes/tonic
+npm i -S @substrate-system/tonic
 ```
 
 ## Use
 
 ```js
-import Tonic from '@bicycle-codes/tonic'
+import Tonic from '@substrate-system/tonic'
 ```
 
 You can use functions as components. They can be async or even an async generator function.
@@ -87,9 +87,9 @@ After adding your Javascript to your HTML, you can use your component anywhere.
 ```
 
 ## fork
-This is a fork of [@socketsupply/tonic](https://github.com/socketsupply/tonic)
+This is a fork of [@socketsupply/tonic](https://github.com/socketsupply/tonic).
 
-See [API docs](https://bicycle-codes.github.io/tonic/)
+See [API docs](https://substrate-system.github.io/tonic/).
 
 ### additions
 Things added to the forked version:
@@ -214,4 +214,4 @@ el.dispatch('more testing', 'some data', {
 - [Troubleshooting](./HELP.md)
 - [Web Component lifecycle methods](https://gomakethings.com/the-web-component-lifecycle-methods/)
 - [How to detect when attributes change on a Web Component](https://gomakethings.com/how-to-detect-when-attributes-change-on-a-web-component/)
-- [API docs generated from typescript](https://bicycle-codes.github.io/tonic/classes/Tonic.html)
+- [API docs generated from typescript](https://substrate-system.github.io/tonic/classes/Tonic.html)
