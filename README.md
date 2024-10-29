@@ -30,7 +30,11 @@ The tl;dr is that this allows you to pass full JS objects between components, no
 - [Install](#install)
 - [Use](#use)
 - [fork](#fork)
-  * [additions](#additions)
+  * [types](#types)
+  * [`tag`](#tag)
+  * [`emit`](#emit)
+  * [`static event`](#static-event)
+  * [`dispatch`](#dispatch)
 - [Useful links](#useful-links)
 
 <!-- tocstop -->
