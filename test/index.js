@@ -1,4 +1,4 @@
-import { test } from '@bicycle-codes/tapzero'
+import { test } from '@substrate-system/tapzero'
 import { v4 as uuid } from 'uuid'
 import Tonic from '../dist/tonic.js'
 
